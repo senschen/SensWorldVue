@@ -15,10 +15,38 @@
             }
         },
         created (){
+            let lastSum = 0;
+            let _this = this;
             global.MV = new MusicVisualizer({
                 size: 128,
                 visualizer: function (arr) {
+                    if(_this.$store.state.step !== 2){
+                        return
+                    }
+                    let sum = arr.reduce(function (prevResult, item) {
+                        return prevResult + item;
+                    });
+                    if (sum > 5000) {
+                        if(lastSum - sum > 500){
+                            $('.j-wrapper-block-main').css({
+                                'transform': 'scale(0.5)'
+                            });
 
+                            lastSum = sum;
+                        }
+                        else if(sum - lastSum > 200){
+                            $('.j-wrapper-block-main').css({
+                                'transform': 'scale(' + (0.5 + 2*(sum - lastSum) / 10000) + ')'
+                            });
+                            lastSum= sum;
+                        }
+                    }
+                    else {
+                        $('.j-wrapper-block-main').css({
+                            'transform': 'scale(0.5)'
+                        });
+                        lastSum = sum;
+                    }
                 }
             });
             global.MV.play && global.MV.play(musicRes, function () {
@@ -30,9 +58,6 @@
             }.bind(this));
         },
         computed: {
-            count () {
-                return this.$store.state.count;
-            },
             playMusic (){
                 return this.$store.state.playmusic;
             }

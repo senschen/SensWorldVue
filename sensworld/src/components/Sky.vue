@@ -20,6 +20,7 @@
 
 <script>
     import makeSky from './../static/js/makeSky';
+    import MakeBreakImg from './../static/js/breakImg';
 
     export default {
         name: 'sky',
@@ -28,7 +29,46 @@
             this.$store.dispatch('setMusic', true);
             this.$nextTick(function () {
                 const ms = makeSky.init();
-                ms.start();
+                ms.start(function (far) {
+                    if (far > 200) {
+                        $('.j-wrapper-block-main').css({
+                            'z-index': '20'
+                        });
+                        $('.j-stage-block-main').css({
+                            'transform': 'translate3d(0,0,0)'
+                        });
+                        $('.j-stage-box-earth').click(function () {
+                            var $this = $(this);
+                            if ($this.hasClass('no')) return;
+                            $this.addClass('shake no');
+                            var bi1 = new MakeBreakImg({
+                                el: $('.j-stage-img-earth')
+                            });
+                            var bi2 = new MakeBreakImg({
+                                el:  $('.j-wrapper-img-back'),
+                                strStyle: 'position: relative;z-index: 10;opacity: 0.5',
+                                itemSpl: 10
+                            });
+
+                            ms.backToStart(function () {
+                                document.body.setAttribute('class','full nocursor');
+                                $('.j-wrapper-cvs').fadeOut(1000);
+                                $('#j-wrapper-block-back').css('perspective','none');
+
+                                bi1.makeBreak();
+                                bi2.makeBreak();
+                                global.MV.slow();
+
+                                setTimeout(function () {
+                                    $('.j-sky-block').remove();
+                                    $('.j-intro-block').removeClass('hide');
+                                    setTimeout(resolve,3000);
+                                }, 1000);
+                            });
+                        });
+
+                    }
+                });
                 let timeSeed = 0;
                 window.onresize = function () {
                     timeSeed && clearTimeout(timeSeed);

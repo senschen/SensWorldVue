@@ -111,6 +111,7 @@
             },
             goNext(){
                 setTimeout(function () {
+                    Cookie.set('finished','1',1);
                     runPrefixMethod(document.documentElement, "RequestFullScreen");
                     document.body.addEventListener("dblclick", function() {
                         if (runPrefixMethod(document, "FullScreen") || runPrefixMethod(document, "IsFullScreen")) {
