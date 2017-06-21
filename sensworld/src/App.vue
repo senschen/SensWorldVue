@@ -1,7 +1,13 @@
 <template>
     <div id="app">
+        <div class="preload-block">
+            <img src="https://ws1.sinaimg.cn/large/6f6196f2gy1fgsxbr1390j21hc0zkncd.jpg" />
+        </div>
         <music></music>
-        <router-view></router-view>
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive>
+
     </div>
 </template>
 
@@ -61,5 +67,42 @@
     ::-webkit-scrollbar-thumb{
         border-radius: 10px;
         background-color: #0D4690;
+    }
+    img{
+        vertical-align: top;
+    }
+    p{
+        margin: .5em 0;
+    }
+    a{
+        color: #fff;
+        text-decoration: none;
+    }
+    a:hover{
+        color: #ff6900;
+    }
+    a.ud{
+        border-bottom: 1px solid #fff;
+    }
+    a.img{
+        border-bottom: 1px dashed #fff;
+    }
+    a.img img{
+        display: none;
+        max-width: 90%;
+    }
+    a.img:hover img{
+        display: inline;
+    }
+    .hide{
+        display: none;
+    }
+    .preload-block img{
+        display: inline-block!important;
+        width: 0!important;
+        height: 0!important;
+        visibility: hidden!important;
+        line-height: 0!important;
+        box-sizing: border-box!important;
     }
 </style>

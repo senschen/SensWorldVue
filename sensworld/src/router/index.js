@@ -3,10 +3,8 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 const Welcome = resolve => require(['../components/Welcome.vue'], resolve);
-import Test from '../components/Test.vue'
-import Sky from '../components/Sky.vue'
-const User = resolve => require(['../components/User.vue'], resolve);
-const Wait = resolve => require(['../components/Wait.vue'], resolve);
+import Sky from '../components/Sky.vue';
+const Intro = resolve => require(['../components/Intro.vue'], resolve);
 
 const router = new Router({
     routes: [
@@ -21,20 +19,10 @@ const router = new Router({
             component: Sky
         },
         {
-            path: '/test',
-            name: 'test',
-            component: Test
-        },
-        {
-            path: '/user/:id',
-            name: 'user',
-            component: User
-        },
-        {
-            path: '/wait/:id',
-            name: 'wait',
-            component: Wait
-        },
+            path: '/intro',
+            name: 'intro',
+            component: Intro
+        }
     ],
     beforeEach (to, from, savedPosition) {
 

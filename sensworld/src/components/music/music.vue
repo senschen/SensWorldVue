@@ -23,26 +23,30 @@
                     if(_this.$store.state.step !== 2){
                         return
                     }
+                    let $wrapperBlock = $('.j-wrapper-block-main');
+                    if($wrapperBlock.hasClass('no')){
+                        return;
+                    }
                     let sum = arr.reduce(function (prevResult, item) {
                         return prevResult + item;
                     });
                     if (sum > 5000) {
                         if(lastSum - sum > 500){
-                            $('.j-wrapper-block-main').css({
+                            $wrapperBlock.css({
                                 'transform': 'scale(0.5)'
                             });
 
                             lastSum = sum;
                         }
                         else if(sum - lastSum > 200){
-                            $('.j-wrapper-block-main').css({
+                            $wrapperBlock.css({
                                 'transform': 'scale(' + (0.5 + 2*(sum - lastSum) / 10000) + ')'
                             });
                             lastSum= sum;
                         }
                     }
                     else {
-                        $('.j-wrapper-block-main').css({
+                        $wrapperBlock.css({
                             'transform': 'scale(0.5)'
                         });
                         lastSum = sum;
