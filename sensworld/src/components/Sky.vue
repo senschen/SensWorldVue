@@ -79,7 +79,9 @@
 
                     bi1.makeBreak();
                     bi2.makeBreak();
-                    global.MV.slow();
+                    if(this.$store.state.loaded){
+                        global.MV.slow();
+                    }
 
                     setTimeout(function () {
                         _this.$router.push('intro');
