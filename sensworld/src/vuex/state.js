@@ -20,7 +20,6 @@ export default {
         }
     ],
     loaded: false,
-    count: 3,
     playmusic: false,
     step: 1
 };

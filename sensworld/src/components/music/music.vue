@@ -74,9 +74,7 @@
             }
         },
         methods: {
-            setCount(){
-                this.$store.dispatch('setCount', this.modelCount);
-            }
+
         }
     }
 </script>

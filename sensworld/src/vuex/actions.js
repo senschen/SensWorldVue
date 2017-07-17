@@ -1,8 +1,4 @@
 export default {
-    // 改变是否登录状态
-    setCount ({commit}, platform) {
-        commit('SET_COUNT', platform);
-    },
     setLoaded ({commit}, platform) {
         commit('SET_LOADED', platform);
     },

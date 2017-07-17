@@ -79,7 +79,7 @@
 
                     bi1.makeBreak();
                     bi2.makeBreak();
-                    if(this.$store.state.loaded){
+                    if(_this.$store.state.loaded){
                         global.MV.slow();
                     }
 
